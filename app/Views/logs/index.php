@@ -1,37 +1,41 @@
 <?= $this->extend('templates/template'); ?>
 <?= $this->section('content'); ?>
-<?php if($user_session['role'] == 'admin') : ?>
-    <a href="<?= base_url('logs/create'); ?>" class="badge bg-primary mb-5 text-decoration-none text-white fs-5"><i class='bx bx-plus-circle me-1'></i> New Log</a>
-<?php endif; ?>
-<table id="data-log" class="table table-hover" style="width: 100%;">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Location</th>
-            <th>Temperature</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php $i = 1 ?>
-        <?php foreach ($logs as $log) : ?>
+
+    <?php if($user_session['role'] == 'admin') : ?>
+        <a href="<?= base_url('logs/create'); ?>" class="badge bg-primary mb-5 text-decoration-none text-white fs-5"><i class='bx bx-plus-circle me-1'></i> New Log</a>
+    <?php endif; ?>
+
+    <a href="<?= base_url('PDFController/htmlToPDF') ?>" target="_blank" class="badge bg-warning text-white border-0 mb-3 fs-5"><i class='bx bx-printer'></i></a>
+
+    <table id="data-log" class="table table-hover" style="width: 100%;">
+        <thead>
             <tr>
-                <td><?= $i++; ?></td>
-                <td><?= date("jS F Y", strtotime($log['date'])); ?></td>
-                <td><?= date("H:i", strtotime($log['time'])); ?></td>
-                <td><?= $log['location']; ?></td>
-                <td><?= $log['temperature']; ?>&deg</td>
-                <td>
-                    <a href="#detailLog" class="badge bg-info text-white border-0 detailLog" data-bs-toggle="modal" 
-                        data-date="<?= date("d F Y", strtotime($log['date'])); ?>" data-time="<?= date("H:i", strtotime($log['time'])); ?>" data-location="<?= $log['location']; ?>" data-temperature="<?= $log['temperature']; ?>">
-                        <i class='bx bx-show'></i>
-                    </a>
-                    <a href="logs/edit/<?= $log['id']; ?>" class="badge bg-warning text-white border-0"><i class='bx bxs-pencil'></i></a>
-                    <a href="#delete" class="badge bg-danger text-white border-0 deleteLog" role="button" data-bs-toggle="modal" data-id="<?= $log['id']; ?>"><i class='bx bx-trash'></i></a>
-                </td>
+                <th>#</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Location</th>
+                <th>Temperature</th>
+                <th>Action</th>
             </tr>
+        </thead>
+        <tbody>
+            <?php $i = 1 ?>
+            <?php foreach ($logs as $log) : ?>
+                <tr>
+                    <td><?= $i++; ?></td>
+                    <td><?= date("jS F Y", strtotime($log['date'])); ?></td>
+                    <td><?= date("H:i", strtotime($log['time'])); ?></td>
+                    <td><?= $log['location']; ?></td>
+                    <td><?= $log['temperature']; ?>&deg</td>
+                    <td>
+                        <a href="#detailLog" class="badge bg-info text-white border-0 detailLog" data-bs-toggle="modal" 
+                            data-date="<?= date("d F Y", strtotime($log['date'])); ?>" data-time="<?= date("H:i", strtotime($log['time'])); ?>" data-location="<?= $log['location']; ?>" data-temperature="<?= $log['temperature']; ?>">
+                            <i class='bx bx-show'></i>
+                        </a>
+                        <a href="logs/edit/<?= $log['id']; ?>" class="badge bg-warning text-white border-0"><i class='bx bxs-pencil'></i></a>
+                        <a href="#delete" class="badge bg-danger text-white border-0 deleteLog" role="button" data-bs-toggle="modal" data-id="<?= $log['id']; ?>"><i class='bx bx-trash'></i></a>
+                    </td>
+                </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
@@ -62,4 +66,5 @@
             </div>
         </div>
     </div>
+
 <?= $this->endSection(); ?>
