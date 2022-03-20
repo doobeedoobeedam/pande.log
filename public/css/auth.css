@@ -1,0 +1,54 @@
+html,
+body.auth {
+  height: 100%;
+}
+
+body.auth {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #F0F0F0;
+}
+
+.logo span {
+    font-family: 'Baloo Da 2', cursive;
+}
+
+.logo span.red {
+    color: var(--primary);
+}
+
+.logo span.green {
+    color: var(--quaternary);
+}
+
+.logo span.purple {
+    color: var(--senary);
+}
+
+.logo span.blue {
+    color: var(--secondary);
+}
+
+.logo span.orange {
+    color: var(--tertiary);
+}
+
+.logo span.info {
+    color: var(--septenary);
+}
+
+.form {
+  width: 100%;
+  max-width: 450px;
+  margin: auto;
+}
+
+.form.signup {
+  max-width: 650px;
+}
+
+.form .form-floating:focus-within {
+  z-index: 2;
+}

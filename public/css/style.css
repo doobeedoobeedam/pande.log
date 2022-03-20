@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;700;800&display=swap');
+
+:root {
+    --primary: #FF6C6C;
+    --secondary: #6C72FF;
+    --tertiary: #FFC46C;
+    --quaternary: #6CFF7B;
+    --senary: #F36CFF;
+    --septenary: #5DD8FF;
+    --primary-soft: #FFC6C6;
+}
+
+.alert {
+    z-index: 1;
+}
+
+.text-red {
+    color: var(--primary);
+}
+
+span.orange {
+    color: var(--tertiary);
+}
+
+.text-info {
+    color: var(--septenary);
+}
+
+a {
+    color: var(--secondary);
+    transition: all 0.3s;
+}
+
+a:hover {
+    color: var(--quaternary);
+}
+
+.bg-primary {
+    background: var(--secondary) !important;
+}
+
+.bg-danger {
+    background: var(--primary) !important;
+}
+
+.bg-warning {
+    background: var(--tertiary) !important;
+}
+
+.bg-success {
+    background: var(--quaternary) !important;
+}
+
+.bg-info {
+    background: var(--septenary) !important;
+}
+
+.menu .nav-link {
+    border-radius: 0;
+    border: 0;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    padding-top: 21px;
+    padding-bottom: 21px;
+    color: black;
+    font-size: 16px;
+    border-top: 4px solid transparent;
+}
+
+.menu .nav-link:hover {
+    border-top: 4px solid gainsboro;
+}
+
+#home-tab.active {
+    border-top: 4px solid var(--primary);
+    color: var(--primary);
+    background: #fff;
+}
+
+#log-tab.active {
+    border-top: 4px solid var(--secondary);
+    color: var(--secondary);
+    background: #fff;
+}
+
+#add-tab.active {
+    border-top: 4px solid var(--tertiary);
+    color: var(--tertiary);
+    background: #fff;
+}
+
+#user-tab.active {
+    border-top: 4px solid var(--quaternary);
+    color: var(--quaternary);
+    background: #fff;
+}
+
+.navbar-nav .nav-link.md {
+    display: none;
+}
+
+@media screen and (max-width: 760px) {
+    .navbar {
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+    .menu .nav-item:nth-child(2) {
+        margin: 0;
+    }
+
+    .navbar-nav .nav-link.md {
+        display: block;
+    }
+
+    .navbar .nav-item {
+        display: none;
+    }
+
+    .menu .nav-link {
+        padding-left: 0 !important;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .menu .nav-link.active {
+        border-top: 4px solid transparent !important;
+        color: var(--primary) !important;
+        background: transparent !important;
+    } 
+}
+
+#home h5 {
+    color: grey;
+}
+
+.list {
+    position: relative;
+    padding-left: 45px;
+    list-style: none;
+}
+
+.list::before {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15px;
+    width: 10px;
+    height: 100%;
+    border-left: 2px solid var(--primary-soft);
+}
+
+.list-item {
+    position: relative;
+    counter-increment: list;
+}
+
+.list-item:not(:last-child) {
+    padding-bottom: 20px;
+}
+
+.list-item::before {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    left: -30px;
+    height: 100%;
+    width: 10px;
+}
+
+.list-item::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    left: -37px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--primary);
+}
+
+.btn {
+    background: var(--tertiary);
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: var(--secondary);
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    opacity: 87%;
+}
+
+.pagination a:hover,
+.pagination .active a {
+    background-color: var(--secondary) !important;
+    border: var(--secondary) !important;
+    color: #ffffff;
+}
+
+.pagination>.active {
+    background: var(--secondary);
+}
