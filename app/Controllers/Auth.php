@@ -4,15 +4,13 @@ namespace App\Controllers;
 
 use App\Models\userModel;
 
-class auth extends BaseController
-{
+class auth extends BaseController {
     protected $userModel;
     public function __construct() {
         $this->userModel = new userModel();        
     }
 
-    public function signin()
-    {
+    public function signin() {
         if(session('number')) {
             session()->setFlashdata('error', 'Anda sudah login!');
             return redirect()->to('home');
@@ -25,8 +23,7 @@ class auth extends BaseController
         return view('auth/signin', $data);
     }
 
-    public function signup()
-    {
+    public function signup() {
         if(session('number')) {
             session()->setFlashdata('error', 'Anda sudah login!');
             return redirect()->to('home');
@@ -39,11 +36,11 @@ class auth extends BaseController
         return view('auth/signup', $data);
     }
 
-    public function login()
-    {
+    public function login() {
         if (!$this->validate([
             'number' => 'required|trim',
             'fullname' => 'required',
+            'password' => 'required',
         ], [   // Errors
             'number' => [
                 'required' => 'The NIK field is required.',
@@ -54,29 +51,38 @@ class auth extends BaseController
             return redirect()->to('auth/signin')->withInput()->with('validation', $validation);
         }
 
-        $fullname = $this->request->getVar('fullname');
         $number = $this->request->getVar('number');
+        $fullname = $this->request->getVar('fullname');
+        $password = $this->request->getVar('password');
         $array = ['number' => $number, 'fullname' => $fullname];
         $user = $this->userModel->where($array)->first();
+
+        // jika usernya ada
         if ($user) {
-            $data = [
-                'id' => $user['id'],
-                'fullname' => $user['fullname'],
-                'number' => $user['number'],
-                'photo' => $user['photo'],
-                'role' => $user['role'],
-                'title' => 'Home'
-            ];
-            session()->set($data);
-            return redirect()->to('home');
+            // cek password
+            if(password_verify($password, $user['password'])) {
+                $data = [
+                    'id' => $user['id'],
+                    'number' => $user['number'],
+                    'fullname' => $user['fullname'],
+                    'photo' => $user['photo'],
+                    'role' => $user['role'],
+                    'title' => 'Home'
+                ];
+                session()->set($data);
+                return redirect()->to('home');
+            } else {
+                session()->setFlashdata('error', 'Wrong password!');
+                return redirect()->to('auth/signin');
+            }
+            
         } else {
             session()->setFlashdata('error', 'Please check your credentials and try again!');
             return redirect()->to('auth/signin');
         }
     }
 
-    public function logout()
-    {
+    public function logout() {
         $dataSession = ['number', 'role'];
         // session()->remove($dataSession);
         session()->destroy();
@@ -84,23 +90,25 @@ class auth extends BaseController
         return redirect()->to('auth/signin');
     }
 
-    public function registration()
-    {
+    public function registration() {
         if (!$this->validate(
             [
-                'number1' => 'required|trim|is_unique[users.number]|matches[number2]',
-                'number2' => 'required|trim|matches[number1]',
+                'number' => 'required|trim|is_unique[users.number]',
                 'fullname' => 'required',
+                'password1' => 'required|trim|matches[password2]',
+                'password2' => 'required|trim|matches[password1]',
             ],
             [   // Errors
-                'number1' => [
-                    'matches' => 'The NIK field does not match the re-NIK field.',
-                    'is_unique' => 'This NIK is already in use by another account. Specify another NIK.',
-                    'required' => 'The NIK field is required',
+                'number' => [
+                    'is_unique' => 'A user with the same NIK already exists. Specify another NIK.',
                 ],
-                'number2' => [
-                    'matches' => 'The re-NIK field does not match the NIK field.',
-                    'required' => 'The re-NIK field is required',
+                'password1' => [
+                    'matches' => 'The password field does not match the re-password field.',
+                    'required' => 'The password field is required',
+                ],
+                'password2' => [
+                    'matches' => 'The re-password field does not match the password field.',
+                    'required' => 'The re-password field is required',
                 ],
             ]
         )) {
@@ -110,8 +118,9 @@ class auth extends BaseController
         }
 
         $saved = $this->userModel->save([
-            'number' => htmlspecialchars($this->request->getVar('number1')),
+            'number' => htmlspecialchars($this->request->getVar('number')),
             'fullname' => htmlspecialchars($this->request->getVar('fullname')),
+            'password' => password_hash($this->request->getVar('password1'), PASSWORD_DEFAULT),
             'photo' => 'original.jpg',
             'role' => 'general',
         ]);

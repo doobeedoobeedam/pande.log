@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
             $data = [
                 'number'        => $faker->randomNumber(9, true),
                 'fullname'      => $faker->name,
+                'password'      => password_hash('password', PASSWORD_DEFAULT),
                 'role'          => $faker->randomElement(['general', 'admin']),
                 'photo'         => 'original.jpg',
                 'created_at'    => Time::now(),
