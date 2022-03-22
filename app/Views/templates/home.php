@@ -1,8 +1,17 @@
 <?= $this->extend('templates/template'); ?>
 <?= $this->section('content'); ?>
     <?php if($user_session['role'] == 'admin') : ?>
-        <h4 class="text-uppercase">Activity</h4>
-        <h5 class="text-secondary">Last Log</h5>
+        <div class="d-flex bd-highlight mb-3">
+            <div class="">
+                <h4 class="text-uppercase">Activity</h4>
+                <h5 class="text-secondary">Last Log</h5>
+            </div>
+            <div class="ms-auto">
+                <a href="<?= base_url('PDFController/PDFForAdmin') ?>" target="_blank" class="badge bg-warning text-white border-0 mb-3 fs-5">
+                    <i class='bx bx-printer'></i>
+                </a>
+            </div>
+        </div>    
         <div class="row mt-4">
             <div class="col-md-4">
                 <ul class="list">

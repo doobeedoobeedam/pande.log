@@ -61,4 +61,14 @@ class LogModel extends Model {
         ->get();
         return $result->getResult();
     }
+
+    public function PDFForAdmin() {
+        $result = $this->select('logs.*, users.fullname, users.number')
+        ->join('users', 'users.id = logs.user_id', 'left')
+        // ->groupBy('MONTHNAME(date)')
+        ->orderBy('fullname', 'ASC')
+        ->orderBy('date', 'ASC')
+        ->get();
+        return $result->getResult();
+    }
 }
