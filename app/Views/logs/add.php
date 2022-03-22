@@ -24,23 +24,11 @@
                     <?= $validation->getError('location'); ?>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Temperature</label>
-                <div class="row">
-                    <div class="col-md-7 mb-3">
-                        <input type="text" id="temperature" name="temperature" class="form-control <?= ($validation->hasError('temperature')) ? 'is-invalid' : '' ?>" value="<?= old('temperature'); ?>">
-                        <div class="invalid-feedback">
-                            <?= $validation->getError('temperature'); ?>
-                        </div>
-                    </div>
-                    <div class="col-md-5 mb-3">
-                        <select class="form-select" name="scale">
-                            <option selected disabled>Select scale</option>
-                            <option value="celsius">Celsius</option>
-                            <option value="fahrenheit">Fahrenheit</option>
-                            <option value="kelvin">Kelvin</option>
-                        </select>
-                    </div>
+                <input type="text" id="temperature" name="temperature" class="form-control <?= ($validation->hasError('temperature')) ? 'is-invalid' : '' ?>" value="<?= old('temperature'); ?>">
+                <div class="invalid-feedback">
+                    <?= $validation->getError('temperature'); ?>
                 </div>
             </div>
         </div>
