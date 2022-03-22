@@ -78,7 +78,8 @@ class auth extends BaseController {
             
         } else {
             session()->setFlashdata('error', 'Please check your credentials and try again!');
-            return redirect()->to('auth/signin');
+            $validation = \Config\Services::Validation();
+            return redirect()->to('auth/signin')->withInput()->with('validation', $validation);
         }
     }
 
