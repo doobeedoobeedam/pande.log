@@ -116,8 +116,6 @@ class users extends BaseController {
             'user_session' => $this->userModel->where(['id' => session()->id])->first()
         ];
 
-        // dd($data['user_session']);
-
         return view('users/edit', $data);
     }
 
@@ -170,6 +168,62 @@ class users extends BaseController {
         } else {
             return redirect()->to('users');
         }
+    }
+
+    public function editPassword($id) {
+        if(!session('number')) {
+            session()->setFlashdata('error', 'Login first!');
+            return redirect()->to('/');
+        }
+
+        if(!$this->validate(
+            [
+                'current-password' => 'required|trim',
+                'new-password' => 'required|trim|matches[repeat-password]',
+                'repeat-password' => 'required|trim|matches[new-password]',
+            ],
+            [   // Errors
+                'new-password' => [
+                    'matches' => 'The password field does not match the repeat-password field.',
+                    'required' => 'The new password field is required',
+                ],
+                'repeat-password' => [
+                    'matches' => 'The repeat password field does not match the new password field.',
+                    'required' => 'The repeat password field is required',
+                ],
+            ]
+        )) {
+            session()->setFlashdata('error', 'Something went wrong');
+            $validation = \Config\Services::Validation();
+            return redirect()->to('users/edit/' . $id)->withInput()->with('validation', $validation);
+        }
+
+        $user = $this->userModel->getUser($id);
+        $current = $this->request->getVar('current-password');
+        $new = $this->request->getVar('new-password');
+
+        if(!password_verify($current, $user['password'])) {
+            session()->setFlashdata('error', 'Wrong password!');
+            return redirect()->to('users/edit/' . $id);
+        } else {
+            if($current == $new) {
+                session()->setFlashdata('error', 'New password cannot be the same as current password!');
+                return redirect()->to('users/edit/' . $id);
+            } else {
+                $saved = $this->userModel->save([
+                    'id' => $id,
+                    'password' => password_hash($new, PASSWORD_DEFAULT),
+                ]);
+            }
+        }
+
+        if ($saved) {
+            session()->setFlashdata('success', 'The password has been updated!');
+        } else {
+            session()->setFlashdata('error', 'A problem has been occurred while submitting your data');
+        }
+
+        return redirect()->to('users/edit/' . $id);
     }
 
     public function detail($id) {

@@ -20,7 +20,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light p-0">
         <div class="container">
-            <a class="navbar-brand me-5" href="#" data-aos="fade-down">
+            <a class="navbar-brand me-5" href="<?= base_url('/home'); ?>" data-aos="fade-down">
                 <img src="<?= base_url(); ?>/img/pande.log.svg" alt="" width="250" height="<?= $user_session['fullname']; ?>" class="d-inline-block align-text-top">
             </a>
             <img data-aos="fade-down" src="<?= base_url(); ?>/img/<?= $user_session['photo']; ?>" width="60" alt="" class="rounded-circle navbar-toggler border-0" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -120,6 +120,7 @@
     <script>
         $(document).ready(function() {
             AOS.init();
+            
             $('#data-log').DataTable({
                 serverSide: false,
                 order: [],
@@ -148,6 +149,11 @@
                 document.getElementById("detail-time").innerHTML = time;
                 document.getElementById("detail-location").innerHTML = location;
                 document.getElementById("detail-temperature").innerHTML = temperature + '&deg';
+            });
+
+            $('.editPassword').click(function() {
+                var id = $(this).data('id');
+                $('#formEditPassword').attr('action', "<?= base_url('users/editPassword'); ?>/" + id);
             });
         });
 
