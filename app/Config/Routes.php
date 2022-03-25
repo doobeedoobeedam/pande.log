@@ -31,13 +31,13 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'auth::signin');
-$routes->get('/signup', 'auth::signup');
-$routes->get('/home', 'home::index');
-$routes->get('/users', 'users::index');
-$routes->delete('/users/(:num)', 'users::destroy/$1');
-$routes->get('/logs', 'logs::index');
-$routes->delete('/logs/(:num)', 'logs::destroy/$1');
+$routes->get('/', 'Auth::signin');
+$routes->get('/signup', 'Auth::signup');
+$routes->get('/home', 'Home::index');
+$routes->get('/users', 'Users::index');
+$routes->delete('/users/(:num)', 'Users::destroy/$1');
+$routes->get('/logs', 'Logs::index');
+$routes->delete('/logs/(:num)', 'Logs::destroy/$1');
 
 /*
  * --------------------------------------------------------------------

@@ -20,7 +20,7 @@ class LogModel extends Model {
         }
     }
 
-    public function getLogForGeneral($user_id = false, $limit) {
+    public function getLogForGeneral($user_id = false, $limit = 0) {
         if ($user_id !== false) {
             if($limit > 0) {
                 return $this->where(['user_id' => $user_id])->orderBy('date', "DESC")->findAll($limit);

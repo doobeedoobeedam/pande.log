@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\userModel;
+use App\Models\UserModel;
 use App\Models\LogModel;
 
-class home extends BaseController {
+class Home extends BaseController {
     protected $userModel, $logModel;
     public function __construct() {        
-        $this->userModel = new userModel();  
+        $this->userModel = new UserModel();  
         $this->logModel = new LogModel();
     }
     

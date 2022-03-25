@@ -2,12 +2,12 @@
 
 namespace App\Controllers;
 
-use App\Models\userModel;
+use App\Models\UserModel;
 
 class auth extends BaseController {
     protected $userModel;
     public function __construct() {
-        $this->userModel = new userModel();        
+        $this->userModel = new UserModel();        
     }
 
     public function signin() {

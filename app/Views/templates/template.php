@@ -54,6 +54,8 @@
 
                     <?php endif; ?>
 
+                    <a class="nav-link md <?= ($request->uri->getSegment(1) == 'users' && $request->uri->getSegment(2) == 'detail') ? 'active' : '' ?>" href="<?= base_url('users/detail/' . $user_session['id']); ?>"><i class='bx bxs-user-detail me-1'></i> Profile</a>
+                    <a class="nav-link md" href="#" data-bs-toggle="modal" data-bs-target="#signout"><i class='bx bx-log-out me-1'></i> Sign out</a>
                 </div>
                 <li class="nav-item dropdown navbar-nav ms-auto" data-aos="fade-left">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\LogModel;
-use App\Models\userModel;
+use App\Models\UserModel;
 use \CodeIgniter\Controller;
 use \Hermawan\DataTables\DataTable;
 use CodeIgniter\HTTP\RequestInterface;
@@ -11,7 +11,7 @@ class logs extends BaseController {
     protected $logModel, $userModel;
     public function __construct() {        
         $this->logModel = new LogModel();
-        $this->userModel = new userModel();  
+        $this->userModel = new UserModel();  
 
         if(!session('number')) {
             session()->setFlashdata('error', 'Login first!');

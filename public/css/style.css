@@ -95,11 +95,11 @@ a:hover {
     background: #fff;
 }
 
-.navbar-nav .nav-link.md {
+.navbar-nav .md {
     display: none;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 768px) {
     .navbar {
         padding-top: 10px !important;
         padding-bottom: 10px !important;
@@ -108,7 +108,12 @@ a:hover {
         margin: 0;
     }
 
-    .navbar-nav .nav-link.md {
+    .menu .nav-link:hover {
+        border-top: 4px solid transparent;
+        color: var(--primary-soft);
+    }
+
+    .navbar-nav .md {
         display: block;
     }
 
