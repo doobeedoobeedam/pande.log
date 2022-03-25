@@ -15,7 +15,7 @@
     <title><?= $title; ?></title>
 </head>
 
-<body>
+<body oncontextmenu="return false;">
     <?= $this->include('templates/alerts'); ?>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light p-0">
