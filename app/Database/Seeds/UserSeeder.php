@@ -20,8 +20,10 @@ class UserSeeder extends Seeder
         $faker = \Faker\Factory::create();
         
         for($i = 0; $i < 10; $i++) {
+            $nik = 3276030;
+            $numberFaker = $faker->randomNumber(9, true);
             $data = [
-                'number'        => $faker->randomNumber(9, true),
+                'number'        => $nik.$numberFaker,
                 'fullname'      => $faker->name,
                 'password'      => password_hash('password', PASSWORD_DEFAULT),
                 'role'          => $faker->randomElement(['general', 'admin']),

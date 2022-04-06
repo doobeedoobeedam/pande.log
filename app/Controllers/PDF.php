@@ -5,7 +5,7 @@ use Dompdf\Dompdf;
 use App\Models\LogModel;
 use App\Models\userModel;
 
-class PdfController extends BaseController { 
+class Pdf extends BaseController { 
     protected $logModel, $userModel;
     public function __construct() {        
         $this->logModel = new LogModel();
@@ -18,10 +18,15 @@ class PdfController extends BaseController {
     }
 
     public function index() {
+        if(!session('number')) {
+            session()->setFlashdata('error', 'Login first!');
+            return redirect()->to('/');
+        }
+
         return view('templates/pdf_view');
     }
 
-    function htmlToPDF() {
+    function general() {
         if(!session('number')) {
             session()->setFlashdata('error', 'Login first!');
             return redirect()->to('/');
@@ -40,10 +45,12 @@ class PdfController extends BaseController {
         );
         $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
+        ob_clean();
         $dompdf->stream($data['filename'], array("Attachment" => false));
+        exit();
     }
 
-    public function PDFForAdmin() {
+    public function admin() {
         if(!session('number')) {
             session()->setFlashdata('error', 'Login first!');
             return redirect()->to('/');
@@ -69,6 +76,8 @@ class PdfController extends BaseController {
         );
         $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
+        ob_clean();
         $dompdf->stream($data['filename'], array("Attachment" => false));
+        exit();
     }
 }

@@ -5,27 +5,27 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="exampleFormControlInput1" class="form-label">NIK</label>
-                <input type="number" id="number" name="number" class="form-control <?= ($validation->hasError('number')) ? 'is-invalid' : '' ?>" value="<?= $user['number']; ?>">
+                <input type="number" id="number" name="number" class="form-control <?= ($validation->hasError('number')) ? 'is-invalid' : '' ?>" value="<?= (old('number')) ? old('number') : $user['number']; ?>">
                 <div class="invalid-feedback">
                     <?= $validation->getError('number'); ?>
                 </div>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Full Name</label>
-                <input type="fullname" id="fullname" name="fullname" class="form-control <?= ($validation->hasError('fullname')) ? 'is-invalid' : '' ?>" value="<?= $user['fullname']; ?>">
+                <input type="fullname" id="fullname" name="fullname" class="form-control <?= ($validation->hasError('fullname')) ? 'is-invalid' : '' ?>" value="<?= (old('fullname')) ? old('fullname') : $user['fullname']; ?>">
                 <div class="invalid-feedback">
                     <?= $validation->getError('fullname'); ?>
                 </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6">
                 <label for="exampleFormControlInput1" class="form-label">Photo</label>
                 <div class="row">
-                    <div class="col-sm-1">
+                    <div class="col-sm-1 mb-3">
                         <img src="<?= base_url(); ?>/img/<?= $user['photo']; ?>" width="40" class="rounded-circle img-preview">
                     </div>
-                    <div class="col-sm-11">
+                    <div class="col-sm-11 mb-3">
                         <input type="hidden" name="oldPhoto" value="<?= $user['photo']; ?>">
-                        <input type="file" id="photo" name="photo" class="form-control" onchange="imgPreview()">                        
+                        <input type="file" id="photo" name="photo" class="form-control" onchange="imgPreview()" value="<?= (old('photo')) ? old('photo') : $user['photo']; ?>">                        
                     </div>
                 </div>
             </div>
@@ -83,8 +83,8 @@
                         </div>
                     </div>
                     <div class="modal-footer border-0">
-                        <button type="button" class="btn btn-secondary border-0 shadow-sm" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary border-0 shadow-sm">Yes</button>
+                        <button type="button" class="btn bg-warning text-white border-0 shadow-sm" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn bg-primary text-white border-0 shadow-sm">Yes</button>
                     </div>
                 </form>
             </div>

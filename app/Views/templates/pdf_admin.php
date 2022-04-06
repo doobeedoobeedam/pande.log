@@ -22,12 +22,12 @@
     </style>
 </head>
 <body>
-    <h4><?= $filename . ' | '. date('d/m/Y, H:i A'); ?></h4>
+    <h4><?= $filename; ?></h4>
     <table border=1 width=100% cellpadding=2 cellspacing=0>
         <thead>
             <tr>
                 <th>#</th>
-                <th>Fullname</th>
+                <th>Full Name</th>
                 <th>NIK</th>
                 <th>Date</th>
                 <th align=center>Time</th>
@@ -50,5 +50,6 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <h5>Downloaded @ <?= date('d/m/Y, H:i A'); ?></h5>
     </body>
 </html>

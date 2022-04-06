@@ -23,7 +23,7 @@ class LogModel extends Model {
     public function getLogForGeneral($user_id = false, $limit = 0) {
         if ($user_id !== false) {
             if($limit > 0) {
-                return $this->where(['user_id' => $user_id])->orderBy('date', "DESC")->findAll($limit);
+                return $this->where(['user_id' => $user_id])->orderBy('date', "DESC")->where('MONTHNAME(date)', date("F"))->findAll($limit);
             }
             return $this->where(['user_id' => $user_id])->orderBy('date', "DESC")->findAll();
         }
@@ -34,6 +34,7 @@ class LogModel extends Model {
             $result = $this->select('*')
             ->join('users', 'users.id = logs.user_id', 'left')
             ->orderBy('date', "DESC")
+            ->where('MONTHNAME(date)', date("F"))
             // ->get();
             ->findAll($limit);
             return $result;

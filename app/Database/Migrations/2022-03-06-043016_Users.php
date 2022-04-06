@@ -4,8 +4,10 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Users extends Migration {
-    public function up() {
+class Users extends Migration
+{
+    public function up()
+    {
         $this->forge->addField([
             'id' => [
                 'type'           => 'INT',
@@ -14,9 +16,8 @@ class Users extends Migration {
                 'auto_increment' => true,
             ],
             'number' => [
-                'type'           => 'INT',
-                'constraint'     => 255,
-                'unsigned'       => true,
+                'type'           => 'VARCHAR',
+                'constraint'     => '255'
             ],
             'fullname' => [
                 'type'          => 'VARCHAR',
@@ -33,7 +34,7 @@ class Users extends Migration {
             ],
             'role' => [
                 'type'          => 'ENUM',
-                'constraint'    => array('admin','general'),
+                'constraint'    => array('admin', 'general'),
                 'default'       => "general",
                 'null'          => true,
             ],
@@ -50,7 +51,8 @@ class Users extends Migration {
         $this->forge->createTable('users');
     }
 
-    public function down() {
+    public function down()
+    {
         $this->forge->dropTable('users');
     }
 }

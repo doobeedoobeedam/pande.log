@@ -17,22 +17,25 @@
                     <?= $validation->getError('fullname'); ?>
                 </div>
             </div>
-            <!-- <div class="col-md-6 mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Photo</label>
-                <input type="file" id="photo" name="photo" class="form-control">                
-            </div> -->
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6">
                 <label for="exampleFormControlInput1" class="form-label">Photo</label>
                 <div class="row">
-                    <div class="col-sm-1">
+                    <div class="col-sm-1 mb-3">
                         <img src="<?= base_url(); ?>/img/original.jpg" width="40" class="rounded-circle img-preview">
                     </div>
-                    <div class="col-sm-11">
+                    <div class="col-sm-11 mb-3">
                         <input type="file" id="photo" name="photo" class="form-control" onchange="imgPreview()">                        
                     </div>
                 </div>
             </div>
             <div class="col-md-6 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Password</label>
+                <input type="password" id="password" name="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : '' ?>" value="<?= old('password'); ?>">
+                <div class="invalid-feedback">
+                    <?= $validation->getError('password'); ?>
+                </div>
+            </div>
+            <div class="col-md-12 mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Role</label>
                 <select id="role" name="role" class="form-select form-control <?= ($validation->hasError('role')) ? 'is-invalid' : '' ?>">
                     <option disabled>Select role</option>

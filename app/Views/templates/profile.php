@@ -3,9 +3,9 @@
     <div class=" border-0 shadow-sm p-4">
         <div class="row">
             <div class="col-lg-3 col-md-12 text-center">
-                <img src="<?= base_url(); ?>/img/<?= $user['photo']; ?>" width="300" class="rounded-circle text-center">
+                <img src="<?= base_url(); ?>/img/<?= $user['photo']; ?>" width="270" class="rounded-circle img-fluid">
             </div>
-            <div class="col-lg-8 col-md-12 p-5">
+            <div class="col-lg-8 col-md-12 py-5">
                 <p class="fs-5 mb-4 pb-3 border-bottom"><span class="fw-bold">Full Name</span> <span class="float-end"><?= $user['fullname']; ?></span></p>
                 <p class="fs-5 mb-4 pb-3 border-bottom"><span class="fw-bold">NIK</span> <span class="float-end"><?= $user['number']; ?></span></p>
                 <p class="fs-5 mb-4 pb-3 border-bottom"><span class="fw-bold">Role</span> <span class="float-end"><?= ucfirst($user['role']); ?></span></p>

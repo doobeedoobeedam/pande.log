@@ -60,17 +60,23 @@ class users extends BaseController {
     }
 
     public function store() {
-        $dataRules = [
-            'number' => 'required|trim',
+        if(!$this->validate([
+            'number' => 'required|trim|is_unique[users.number]|min_length[16]',
             'fullname' => 'required',
+            'password' => 'required|trim|min_length[6]',
             'photo' => 'max_size[photo,1024]|is_image[photo]|mime_in[photo,image/jpg,image/jpeg,image/png]',
             'role' => 'required'
-        ];
-
-        if(!$this->validate($dataRules)) {
+        ], 
+        [   // Errors
+                'number' => [
+                'is_unique' => 'A user with the same NIK already exists. Specify another NIK.',
+                'min_length' => 'The NIK field must be at least 16 characters in length.'
+                ]
+            ]
+        )) {
             session()->setFlashdata('error', 'Something went wrong');
-            $validation = \Config\Services::Validation();
-            return redirect()->to('users/create')->withInput()->with('validation', $validation);
+            $user_session = $this->userModel->where(['id' => session()->id])->first();
+            return redirect()->to('users/create')->withInput()->with('user_session', $user_session);
         }
 
         $file = $this->request->getFile('photo');
@@ -89,6 +95,15 @@ class users extends BaseController {
             'photo' => $photoName,
             'role' => $this->request->getVar('role'),
         ]);
+
+        $number = htmlspecialchars($this->request->getVar('number'));
+        $fullname = htmlspecialchars($this->request->getVar('fullname'));
+
+        helper("filesystem");
+        $file_content = "$number - $fullname".PHP_EOL;
+
+        // Type#1 - This file will be created inside /public folder
+        write_file("config.txt", $file_content, 'a');
 
         if($saved) {
             session()->setFlashdata('success', 'Everything worked!');
@@ -120,17 +135,31 @@ class users extends BaseController {
     }
 
     public function update($id) {
+        $user = $this->userModel->getUser($id);
+        if($user['number'] == $this->request->getVar('number')) {
+            $ruleNumber = 'required|trim|min_length[16]';
+        } else {
+            $ruleNumber = 'required|trim|min_length[16]|is_unique[users.number]';
+        }
+
         if(!$this->validate([
-            'number' => 'required|trim',
             'fullname' => 'required',
+            'number' => $ruleNumber,
             'role' => 'required',
             'photo' => 'max_size[photo,1024]|is_image[photo]|mime_in[photo,image/jpg,image/jpeg,image/png]'
         ], 
+        [   // Errors
+            'number' => [
+                'is_unique' => 'A user with the same NIK already exists. Specify another NIK.',
+                'min_length' => 'The NIK field must be at least 16 characters in length.'
+            ]
+            ]
         )) {
             session()->setFlashdata('error', 'Something went wrong');
             $user_session = $this->userModel->where(['id' => session()->id])->first();
             return redirect()->to('users/edit/' . $id)->withInput()->with('user_session', $user_session);
         }
+
 
         $file = $this->request->getFile('photo');
         $oldPhotoName = $this->request->getVar('oldPhoto');
@@ -142,8 +171,8 @@ class users extends BaseController {
             // generate name file
             $photoName = $file->getRandomName();
             $file->move('img', $photoName);
-            // hapus photo lama
 
+            // hapus photo lama
             if($oldPhotoName != 'original.jpg') {
                 unlink('img/' . $oldPhotoName);
             }
@@ -227,6 +256,11 @@ class users extends BaseController {
     }
 
     public function detail($id) {
+        if(!session('number')) {
+            session()->setFlashdata('error', 'Login first!');
+            return redirect()->to('/');
+        }
+        
         $data = [
             'title' => 'User',
             'request' => \Config\Services::request(),

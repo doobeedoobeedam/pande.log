@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?= base_url(); ?>/css/boxicons.css">
     <link rel="stylesheet" href="<?= base_url(); ?>/css/style.css">
     <link rel="stylesheet" href="<?= base_url(); ?>/css/auth.css">
+    <link rel="icon" type="image/png" href="<?= base_url(); ?>/img/logop.png">
     <title><?= $title; ?></title>
 </head>
 
@@ -21,9 +22,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light p-0">
         <div class="container">
             <a class="navbar-brand me-5" href="<?= base_url('/home'); ?>" data-aos="fade-down">
-                <img src="<?= base_url(); ?>/img/pande.log.svg" alt="" width="250" height="<?= $user_session['fullname']; ?>" class="d-inline-block align-text-top">
+                <img src="<?= base_url(); ?>/img/pande.log.svg" alt="" width="250" height="<?= $user_session['fullname']; ?>" class="img-fluid d-inline-block align-text-top">
             </a>
-            <img data-aos="fade-down" src="<?= base_url(); ?>/img/<?= $user_session['photo']; ?>" width="60" alt="" class="rounded-circle navbar-toggler border-0" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <img data-aos="fade-down" src="<?= base_url(); ?>/img/<?= $user_session['photo']; ?>" width="60" alt="" class="rounded-circle navbar-toggler dropdown-toggle border-0" role="button" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav menu">
                     <a class="nav-link <?= ($request->uri->getSegment(1) == 'home') ? 'active' : '' ?>" id="home-tab" href="<?= base_url('/home'); ?>">
@@ -53,16 +54,17 @@
                         <a class="nav-link <?= ($request->uri->getSegment(1) == 'logs' && $request->uri->getSegment(2) == 'create') ? 'active' : '' ?>" id="add-tab" href="<?= base_url('logs/create'); ?>"><i class='bx bx-plus-circle me-1'></i> New Log</a>
 
                     <?php endif; ?>
-
+                    
                     <a class="nav-link md <?= ($request->uri->getSegment(1) == 'users' && $request->uri->getSegment(2) == 'detail') ? 'active' : '' ?>" href="<?= base_url('users/detail/' . $user_session['id']); ?>"><i class='bx bxs-user-detail me-1'></i> Profile</a>
                     <a class="nav-link md" href="#" data-bs-toggle="modal" data-bs-target="#signout"><i class='bx bx-log-out me-1'></i> Sign out</a>
+
                 </div>
                 <li class="nav-item dropdown navbar-nav ms-auto" data-aos="fade-left">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="me-1 mt-1"><?= $user_session['fullname']; ?></span> <img src="<?= base_url(); ?>/img/<?= $user_session['photo']; ?>" width="40" alt="" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu border-0 rounded-0 shadow-sm" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="<?= base_url('users/detail/' . $user_session['id']); ?>">Profile</a></li>
+                        <li><a class="dropdown-item" href="<?= base_url('users/detail/' . $user_session['id']); ?>">Profile</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#signout">Sign out</a></li>
                     </ul>
                 </li>
@@ -79,7 +81,7 @@
                     Are you sure wanna sign out?
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-secondary border-0 shadow-sm" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn bg-warning border-0 shadow-sm text-white" data-bs-dismiss="modal">Close</button>
                     <a href="<?= base_url('auth/logout'); ?>" class="btn btn-primary border-0 shadow-sm">Yes</a>
                 </div>
             </div>
@@ -100,7 +102,7 @@
             <div class="modal-content border-0">
                 <div class="modal-body border-0">
                     <h5 class="modal-title text-red fs-3" id="exampleModalLabel">#Delete</h5>
-                    Are you sure wanna delete this data?
+                    <span id="delete-warning" class="text-danger"></span> Are you sure wanna delete this data?
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn bg-warning border-0 shadow-sm text-white" data-bs-dismiss="modal">Close</button>
@@ -139,7 +141,9 @@
 
             $('.deleteUser').click(function() {
                 var id = $(this).data('id');
+                var warning = 'When a user account is deleted, all personal logs to that user is removed too.'
                 $('#formDelete').attr('action', "<?= base_url('users/destroy'); ?>/" + id);
+                document.getElementById("delete-warning").innerHTML = warning;
             });
 
             $('.detailLog').click(function() {

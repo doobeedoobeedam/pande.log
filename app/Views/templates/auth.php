@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?= base_url(); ?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url(); ?>/css/style.css">
     <link rel="stylesheet" href="<?= base_url(); ?>/css/auth.css">
+    <link rel="icon" type="image/png" href="<?= base_url(); ?>/img/logop.png">
     <title><?= $title; ?></title>
 </head>
 

@@ -5,7 +5,7 @@
         <a href="<?= base_url('logs/create'); ?>" class="badge bg-primary mb-5 text-decoration-none text-white fs-5"><i class='bx bx-plus-circle me-1'></i> New Log</a>
     <?php endif; ?>
 
-    <a href="<?= base_url('PDFController/htmlToPDF') ?>" target="_blank" class="badge bg-warning text-white border-0 mb-3 fs-5"><i class='bx bx-printer'></i></a>
+    <a href="<?= base_url('PDF/general') ?>" target="_BLANK" class="badge bg-warning text-white border-0 mb-3 fs-5"><i class='bx bx-printer'></i></a>
 
     <table id="data-log" class="table table-hover" style="width: 100%;">
         <thead>

@@ -7,7 +7,7 @@
                 <h5 class="text-secondary">Last Log</h5>
             </div>
             <div class="ms-auto">
-                <a href="<?= base_url('PDFController/PDFForAdmin') ?>" target="_blank" class="badge bg-warning text-white border-0 mb-3 fs-5">
+                <a href="<?= base_url('PDF/admin') ?>" target="_BLANK" class="badge bg-warning text-white border-0 mb-3 fs-5">
                     <i class='bx bx-printer'></i>
                 </a>
             </div>
@@ -23,6 +23,13 @@
                             <?= $log['fullname']; ?> <span class="orange fw-bold">ON</span> <?= date("jS F Y", strtotime($log['date'])); ?> | <?= date("H:i", strtotime($log['time'])); ?>
                         </li>
                     <?php endforeach; ?>
+                    <?php if(count($admin_log) == 0) : ?>
+                        <li class="list-item">
+                            <h6 class="experience-title text-danger">
+                                No logs available.
+                            </h6>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
             <div class="col-md-8">
@@ -100,6 +107,13 @@
                         <span class="orange fw-bold">ON</span> <?= date("jS F Y", strtotime($log['date'])); ?> | <?= date("H:i", strtotime($log['time'])); ?>
                     </li>
                     <?php endforeach; ?>
+                    <?php if(count($user_log) == 0) : ?>
+                        <li class="list-item">
+                            <h6 class="experience-title text-danger">
+                                No logs available.
+                            </h6>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
             <div class="col-md-8">

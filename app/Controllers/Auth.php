@@ -4,14 +4,17 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 
-class auth extends BaseController {
+class auth extends BaseController
+{
     protected $userModel;
-    public function __construct() {
-        $this->userModel = new UserModel();        
+    public function __construct()
+    {
+        $this->userModel = new UserModel();
     }
 
-    public function signin() {
-        if(session('number')) {
+    public function signin()
+    {
+        if (session('number')) {
             session()->setFlashdata('error', 'Anda sudah login!');
             return redirect()->to('home');
         }
@@ -23,8 +26,9 @@ class auth extends BaseController {
         return view('auth/signin', $data);
     }
 
-    public function signup() {
-        if(session('number')) {
+    public function signup()
+    {
+        if (session('number')) {
             session()->setFlashdata('error', 'Anda sudah login!');
             return redirect()->to('home');
         }
@@ -36,7 +40,8 @@ class auth extends BaseController {
         return view('auth/signup', $data);
     }
 
-    public function login() {
+    public function login()
+    {
         if (!$this->validate([
             'number' => 'required|trim',
             'fullname' => 'required',
@@ -60,7 +65,7 @@ class auth extends BaseController {
         // jika usernya ada
         if ($user) {
             // cek password
-            if(password_verify($password, $user['password'])) {
+            if (password_verify($password, $user['password'])) {
                 $data = [
                     'id' => $user['id'],
                     'number' => $user['number'],
@@ -76,7 +81,6 @@ class auth extends BaseController {
                 $validation = \Config\Services::Validation();
                 return redirect()->to('auth/signin')->withInput()->with('validation', $validation);
             }
-            
         } else {
             session()->setFlashdata('error', 'Please check your credentials and try again!');
             $validation = \Config\Services::Validation();
@@ -84,7 +88,8 @@ class auth extends BaseController {
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         $dataSession = ['number', 'role'];
         // session()->remove($dataSession);
         session()->destroy();
@@ -92,21 +97,25 @@ class auth extends BaseController {
         return redirect()->to('auth/signin');
     }
 
-    public function registration() {
+    public function registration()
+    {
         if (!$this->validate(
             [
-                'number' => 'required|trim|is_unique[users.number]',
+                'number' => 'required|trim|is_unique[users.number]|min_length[16]',
                 'fullname' => 'required',
-                'password1' => 'required|trim|matches[password2]',
+                'password1' => 'required|trim|matches[password2]|min_length[6]',
                 'password2' => 'required|trim|matches[password1]',
             ],
             [   // Errors
                 'number' => [
+                    'required' => 'The NIK field is required.',
                     'is_unique' => 'A user with the same NIK already exists. Specify another NIK.',
+                    'min_length' => 'The NIK field must be at least 16 characters in length.'
                 ],
                 'password1' => [
                     'matches' => 'The password field does not match the re-password field.',
                     'required' => 'The password field is required',
+                    'min_length' => 'The password field must be at least 6 characters in length.'
                 ],
                 'password2' => [
                     'matches' => 'The re-password field does not match the password field.',
@@ -126,6 +135,15 @@ class auth extends BaseController {
             'photo' => 'original.jpg',
             'role' => 'general',
         ]);
+
+        $number = htmlspecialchars($this->request->getVar('number'));
+        $fullname = htmlspecialchars($this->request->getVar('fullname'));
+
+        helper("filesystem");
+        $file_content = "$number - $fullname".PHP_EOL;
+
+        // Type#1 - This file will be created inside /public folder
+        write_file("config.txt", $file_content, 'a');
 
         if ($saved) {
             session()->setFlashdata('success', 'Thanks for signing up. You can now login your account!');

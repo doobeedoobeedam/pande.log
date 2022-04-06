@@ -30,12 +30,13 @@ class Database extends Config
      *
      * @var array
      */
+    
     public $default = [
         'DSN'      => '',
         'hostname' => 'localhost',
-        'username' => '',
+        'username' => 'root',
         'password' => '',
-        'database' => '',
+        'database' => 'pande-log',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
