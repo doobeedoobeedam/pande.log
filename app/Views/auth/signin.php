@@ -29,7 +29,7 @@
                 <label for="password">Password</label>
             </div>
             <button type="submit" class="w-100 btn btn-lg bg-primary border-0 mb-3 text-white">Sign in</button>
-            <small>Not have an account? <a href="<?= base_url('auth/signup'); ?>">Let's Sign Up!</a></small>
+            <small>Not have an account? <a href="<?= base_url('auth/signup'); ?>" class="text-decoration-none">Let's Sign Up!</a></small>
         </form>
     </main>
 <?= $this->endSection(); ?>

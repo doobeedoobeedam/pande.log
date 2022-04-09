@@ -29,7 +29,7 @@
                     <td><?= $log['temperature']; ?>&deg</td>
                     <td>
                         <a href="#detailLog" class="badge bg-info text-white border-0 detailLog" data-bs-toggle="modal" 
-                            data-date="<?= date("d F Y", strtotime($log['date'])); ?>" data-time="<?= date("H:i", strtotime($log['time'])); ?>" data-location="<?= $log['location']; ?>" data-temperature="<?= $log['temperature']; ?>">
+                            data-date="<?= date("jS F Y", strtotime($log['date'])); ?>" data-time="<?= date("H:i", strtotime($log['time'])); ?>" data-location="<?= $log['location']; ?>" data-temperature="<?= $log['temperature']; ?>">
                             <i class='bx bx-show'></i>
                         </a>
                         <a href="logs/edit/<?= $log['id']; ?>" class="badge bg-warning text-white border-0"><i class='bx bxs-pencil'></i></a>

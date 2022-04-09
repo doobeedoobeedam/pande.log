@@ -15,6 +15,7 @@
 <body class="auth text-center">
     <?= $this->include('templates/alerts'); ?>
     <?= $this->renderSection('main'); ?>
+    <script src="<?= base_url(); ?>/js/jquery-3.4.1.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();

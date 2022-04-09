@@ -40,7 +40,7 @@
                 </div>
             </div>
             <button type="submit" class="w-100 btn btn-lg bg-primary text-white border-0 mb-3">Sign up</button>
-            <small>Already have a account? <a href="<?= base_url('auth/signin'); ?>">Sign in!</a></small>
+            <small>Already have a account? <a href="<?= base_url('auth/signin'); ?>" class="text-decoration-none">Sign in!</a></small>
         </form>
     </main>
 <?= $this->endSection(); ?>

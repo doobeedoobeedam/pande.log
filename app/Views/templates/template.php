@@ -82,7 +82,7 @@
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn bg-warning border-0 shadow-sm text-white" data-bs-dismiss="modal">Close</button>
-                    <a href="<?= base_url('auth/logout'); ?>" class="btn btn-primary border-0 shadow-sm">Yes</a>
+                    <a href="<?= base_url('auth/logout'); ?>" class="btn bg-primary text-white border-0 shadow-sm">Yes</a>
                 </div>
             </div>
         </div>
