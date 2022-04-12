@@ -92,6 +92,7 @@ class users extends BaseController {
         $saved = $this->userModel->save([
             'number' => $this->request->getVar('number'),
             'fullname' => $this->request->getVar('fullname'),
+            'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
             'photo' => $photoName,
             'role' => $this->request->getVar('role'),
         ]);
