@@ -69,8 +69,9 @@ class users extends BaseController {
         ], 
         [   // Errors
                 'number' => [
-                'is_unique' => 'A user with the same NIK already exists. Specify another NIK.',
-                'min_length' => 'The NIK field must be at least 16 characters in length.'
+                    'required' => 'The NIK field is required.',
+                    'is_unique' => 'A user with the same NIK already exists. Specify another NIK.',
+                    'min_length' => 'The NIK field must be at least 16 characters in length.'
                 ]
             ]
         )) {
@@ -151,6 +152,7 @@ class users extends BaseController {
         ], 
         [   // Errors
             'number' => [
+                'required' => 'The NIK field is required.',
                 'is_unique' => 'A user with the same NIK already exists. Specify another NIK.',
                 'min_length' => 'The NIK field must be at least 16 characters in length.'
             ]

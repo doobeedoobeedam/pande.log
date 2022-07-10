@@ -21,8 +21,8 @@ class LogSeeder extends Seeder
         for($i = 0; $i < 30; $i++) {
             $data = [
                 'user_id'       => $faker->randomDigitNotNull(),
-                'date'          => '2022-'.$faker->date('m-d'),
-                // 'date'          => '2022-04-'.$faker->date('d'),
+                // 'date'          => '2022-'.$faker->date('m-d'),
+                'date'          => '2022-04-'.$faker->date('d'),
                 'time'          => $faker->time(),
                 'location'      => $faker->country(),
                 'temperature'   => $faker->randomFloat(1, 30, 40),

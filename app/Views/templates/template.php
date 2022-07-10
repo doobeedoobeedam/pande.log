@@ -141,7 +141,7 @@
 
             $('.deleteUser').click(function() {
                 var id = $(this).data('id');
-                var warning = 'When a user account is deleted, all personal logs to that user is removed too.'
+                var warning = $(this).data('warning')
                 $('#formDelete').attr('action', "<?= base_url('users/destroy'); ?>/" + id);
                 document.getElementById("delete-warning").innerHTML = warning;
             });
