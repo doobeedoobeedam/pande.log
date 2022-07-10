@@ -1,6 +1,5 @@
 # Aplikasi Catatan Perjalanan PHP
 
-> disclaimer:
 > Ini aplikasi bikinnya pake niat (also pake banget),
 > ngerjainnya juga sendiri, jadi bisa bebas berselancar. 
 > I'll kill some time sambil ngerjain ini by the way :>
@@ -61,7 +60,7 @@
 
 ### Export .pdf
 
-![excel](./.pict/pdf.jpg)
+![pdf](./.pict/pdf.jpg)
 
 ### Sign Out
 
