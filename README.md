@@ -1,63 +1,68 @@
-# CodeIgniter 4 Application Starter
+# Aplikasi Catatan Perjalanan PHP
 
-## What is CodeIgniter?
+> disclaimer:
+> Ini aplikasi bikinnya pake niat (also pake banget)
+> + ngerjainnya juga sendiri, jadi bisa bebas berselancar. 
+> I'll kill some time sambil ngerjain ini by the way :>
+> So, this app is very dearest for me
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+## Teknologi yang digunakan
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- [PHP](https://www.php.net/) - Bahasa yang digunakan
+- [CodeIgniter](https://codeigniter.com) - Framework PHP
+- [Bootstrap](https://getbootstrap.com) - Framework CSS
+- [MariaDB/MySQL](https://mariadb.org/) - Database SQL
+- [VSCode](https://code.visualstudio.com/) - Text Editor
+- [Faker](https://fakerphp.github.io/) - Untuk membuat data palsu
+- [BoxIcons](https://boxicons.com/) - Kumpulan ikon yang digunakan
+- [DataTables](https://datatables.net/) - Membuat tabel interaksi
+- [ChartJS](https://www.chartjs.org/) - Untuk membuat grafik
+- [AOS](https://michalsnik.github.io/aos/) - Mengontrol animasi
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+## Sekilas Info:
 
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+1. Terdapat dua user, yaitu `admin` & `general`<br>
+2. Keduanya bisa login pakai NIK<br>
+3. 'CATATAN' dalam aplikasi ini disebut **LOG**
 
-## Installation & updates
+## Fitur
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+1. Signin/signout user<br>
+2. CRUD log<br>
+3. CRUD user<br>
+4. Edit profile
+5. Laporan log export PDF
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+## Screenshots
 
-## Setup
+### Sign Up
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+![signup](./.pict/signup.jpg)
 
-## Important Change with index.php
+### Sign In
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+![signin](./.pict/signin.jpg)
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### Dashboard
 
-**Please** read the user guide for a better explanation of how CI4 works!
+![dashboard](./.pict/dashboard.jpg)
 
-## Repository Management
+### Users Management
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+![users](./.pict/users.jpg)
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+### Profile
 
-## Server Requirements
+![profile](./.pict/profile.jpg)
 
-PHP version 7.3 or higher is required, with the following extensions installed:
+### Logs Management
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+![logs](./.pict/logs.jpg)
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+### Sign Up
 
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
+![signup](./.pict/signup.jpg)
+
+### Export .pdf
+
+![excel](./.pict/pdf.jpg)
