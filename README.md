@@ -2,7 +2,7 @@
 
 > disclaimer:
 > Ini aplikasi bikinnya pake niat (also pake banget)
-> + ngerjainnya juga sendiri, jadi bisa bebas berselancar. 
+> ngerjainnya juga sendiri, jadi bisa bebas berselancar. 
 > I'll kill some time sambil ngerjain ini by the way :>
 > So, this app is very dearest for me
 
@@ -59,9 +59,9 @@
 
 ![logs](./.pict/logs.jpg)
 
-### Sign Up
+### Sign Out
 
-![signup](./.pict/signup.jpg)
+![signout](./.pict/signout.jpg)
 
 ### Export .pdf
 
