@@ -1,10 +1,10 @@
 # Aplikasi Catatan Perjalanan PHP
 
 > disclaimer:
-> Ini aplikasi bikinnya pake niat (also pake banget)
+> Ini aplikasi bikinnya pake niat (also pake banget),
 > ngerjainnya juga sendiri, jadi bisa bebas berselancar. 
 > I'll kill some time sambil ngerjain ini by the way :>
-> So, this app is very dearest for me
+> Jadi, this app is very dearest for me
 
 ## Teknologi yang digunakan
 
