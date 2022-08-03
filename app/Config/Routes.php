@@ -36,6 +36,7 @@ $routes->get('/', 'Auth::signin');
 $routes->get('/signup', 'Auth::signup');
 $routes->get('/home', 'Home::index');
 $routes->get('/users', 'Users::index');
+$routes->get('/users/editPassword/(:num)', 'Users::editPassword/$1');
 $routes->delete('/users/(:num)', 'Users::destroy/$1');
 $routes->get('/logs', 'Logs::index');
 $routes->delete('/logs/(:num)', 'Logs::destroy/$1');

@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/r-2.2.9/datatables.min.css" type="text/css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <link rel="stylesheet" href="<?= base_url(); ?>/css/aos.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/css/datatables.min.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url(); ?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url(); ?>/css/boxicons.css">
     <link rel="stylesheet" href="<?= base_url(); ?>/css/style.css">
     <link rel="stylesheet" href="<?= base_url(); ?>/css/auth.css">
     <link rel="icon" type="image/png" href="<?= base_url(); ?>/img/logop.png">
+    <script src="<?= base_url(); ?>/js/chart.min.js"></script>
     <title><?= $title; ?></title>
 </head>
 
@@ -119,61 +119,8 @@
     <script src="<?= base_url(); ?>/js/popper.min.js"></script>
     <script src="<?= base_url(); ?>/js/bootstrap.min.js"></script>
     <script src="<?= base_url(); ?>/js/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.datatables.net/v/bs5/dt-1.11.5/rr-1.2.8/datatables.min.js" type="text/javascript"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        $(document).ready(function() {
-            AOS.init();
-            
-            $('#data-log').DataTable({
-                serverSide: false,
-                order: [],
-                columnDefs: [ 
-                    { 'targets': [3], 'orderable': false, },
-                    { 'targets': [5], 'orderable': false, },
-                ],
-            });
-
-            $('.deleteLog').click(function() {
-                var id = $(this).data('id');
-                $('#formDelete').attr('action', "<?= base_url('logs/destroy'); ?>/" + id);
-            });
-
-            $('.deleteUser').click(function() {
-                var id = $(this).data('id');
-                var warning = $(this).data('warning')
-                $('#formDelete').attr('action', "<?= base_url('users/destroy'); ?>/" + id);
-                document.getElementById("delete-warning").innerHTML = warning;
-            });
-
-            $('.detailLog').click(function() {
-                var date = $(this).data('date');
-                var time = $(this).data('time');
-                var location = $(this).data('location');
-                var temperature = $(this).data('temperature');
-                document.getElementById("detail-date").innerHTML = date;
-                document.getElementById("detail-time").innerHTML = time;
-                document.getElementById("detail-location").innerHTML = location;
-                document.getElementById("detail-temperature").innerHTML = temperature + '&deg';
-            });
-
-            $('.editPassword').click(function() {
-                var id = $(this).data('id');
-                $('#formEditPassword').attr('action', "<?= base_url('users/editPassword'); ?>/" + id);
-            });
-        });
-
-        function imgPreview() {
-            const imgPreview = document.querySelector('.img-preview');
-            const photo = document.querySelector('#photo');
-
-            const filePhoto = new FileReader();
-            filePhoto.readAsDataURL(photo.files[0]);
-
-            filePhoto.onload = function(e){
-                imgPreview.src = e.target.result;
-            }
-        }
-    </script>
+    <script src="<?= base_url(); ?>/js/datatables.min.js"></script>
+    <script src="<?= base_url(); ?>/js/aos.js"></script>
+    <script src="<?= base_url(); ?>/js/main.js"></script>
 </body>
 </html>

@@ -45,9 +45,9 @@
         </div>
         <div class="d-flex mt-3">
             <div class="me-auto">
-                <button type="button" class="btn bg-info text-white editPassword" data-bs-toggle="modal" data-bs-target="#editPassword" data-id="<?= $user['id']; ?>">
+                <a href="#editPassword" class="btn bg-info text-white editPassword" data-bs-toggle="modal" data-bs-target="#editPassword" data-id="<?= $user['id']; ?>">
                     <i class='bx bxs-key me-2'></i>Edit Password
-                </button>
+                </a>
             </div>
             <div class="">
                 <?php if($user_session['role'] == 'admin') : ?>
@@ -65,7 +65,7 @@
     <div class="modal fade" id="editPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content border-0">
-                <form action="" method="post" id="formEditPassword">
+                <form action="" method="POST" id="formEditPassword">
                     <?= csrf_field(); ?>
                     <div class="modal-body border-0">
                         <h5 class="modal-title text-red fs-3" id="exampleModalLabel">#Edit Password</h5>
