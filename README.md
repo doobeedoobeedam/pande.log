@@ -1,9 +1,9 @@
 # Aplikasi Catatan Perjalanan PHP
 
-> Ini aplikasi bikinnya pake niat (also pake banget),
-> ngerjainnya juga sendiri, jadi bisa bebas berselancar. 
-> I'll kill some time sambil ngerjain ini by the way :>
-> Jadi, this app is very dearest for me
+Pande.log merupakan sebuah aplikasi berbasis website yang dibangun sebagai sistem informasi pengelolaan catatan perjalanan. Dibuat untuk menyelesaikan Uji Kompetensi Keahlian 2021/2022 yang diadakan oleh Konsorsium SKK BONET.
+
+> I killed some time sambil ngerjain ini by the way.
+> Jadi, this app is very dearest for me :>
 
 ## Teknologi yang digunakan
 
