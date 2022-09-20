@@ -18,7 +18,7 @@ Pande.log merupakan sebuah aplikasi berbasis website yang dibangun sebagai siste
 - [ChartJS](https://www.chartjs.org/) - Untuk membuat grafik
 - [AOS](https://michalsnik.github.io/aos/) - Mengontrol animasi
 
-## Sekilas Info:
+## Sekilas Info
 
 1. Terdapat dua user, yaitu `admin` & `general`<br>
 2. Keduanya bisa login pakai NIK<br>
